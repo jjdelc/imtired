@@ -1,3 +1,32 @@
+const MS = 100;
+const WorkoutPlayer = class {
+    constructor(routine, callback, rest, finish){
+        this.routine = routine;
+        this.callback = callback;
+        this.finish = finish;
+        this.rest =  rest;
+    }
+    play(){
+        let pos = 0;
+        const nextStep = (step) => {
+            this.callback(step);
+            if (pos < this.routine.steps.length) {
+                setTimeout(() => {
+                    this.rest();
+                    setTimeout(() => {
+                        step = this.routine.steps[pos];
+                        pos += 1;
+                        nextStep(step);
+                    }, this.routine.rest * MS);
+                }, step.time * MS);
+            } else {
+                this.finish()
+            }
+        };
+        nextStep(this.routine.steps[pos]);
+    }
+};
+
 const TopMenu = {
     template: '#topMenuTpl'
 };
@@ -25,20 +54,39 @@ const WorkoutMain = {
     ],
     data(){
         return {
-            currentStep: 0
+            currentStep: null,
+            state: 'rest',
         }
     },
     methods: {
+        restStep(){
+            this.state = 'rest';
+        },
+        showStep(step) {
+            console.log(step.name);
+            this.state = 'step';
+            this.currentStep = step;
+        },
+        finishWorkout(){
+            this.state = 'done';
+            console.log('Workout finished!')
+        },
         begin(){
             alert(this.routine.name);
+            const player = new WorkoutPlayer(this.routine,
+                                             this.showStep,
+                                             this.restStep,
+                                             this.finishWorkout);
+            player.play();
         }
     }
 };
 
+
 const WORKOUTS = [{
     id: 'basic',
     name: 'Basic',
-    rest: 15,
+    rest: 5,
     steps: [{
         name: 'Jumping jacks',
         graphic: '',
@@ -97,6 +145,7 @@ const WORKOUTS = [{
         time: 15
     }, ]
 }];
+
 
 const app = new Vue({
     el: '#app',
