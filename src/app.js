@@ -7,23 +7,21 @@ const WorkoutPlayer = class {
         this.rest =  rest;
     }
     play(){
-        let pos = 0;
-        const nextStep = (step) => {
+        const nextStep = (pos) => {
+            const step = this.routine.steps[pos];
             this.callback(step);
-            if (pos < this.routine.steps.length) {
+            if (pos + 1 < this.routine.steps.length) {
                 setTimeout(() => {
                     this.rest();
                     setTimeout(() => {
-                        step = this.routine.steps[pos];
-                        pos += 1;
-                        nextStep(step);
+                        nextStep(pos + 1);
                     }, this.routine.rest * MS);
                 }, step.time * MS);
             } else {
                 this.finish()
             }
         };
-        nextStep(this.routine.steps[pos]);
+        nextStep(0);
     }
 };
 
@@ -38,7 +36,6 @@ const AppStart = {
     ],
     data() {
         return {
-            message: "HOLAS"
         }
     },
     methods: {
@@ -63,16 +60,15 @@ const WorkoutMain = {
             this.state = 'rest';
         },
         showStep(step) {
-            console.log(step.name);
             this.state = 'step';
             this.currentStep = step;
         },
         finishWorkout(){
             this.state = 'done';
-            console.log('Workout finished!')
+            console.log('Workout finished!');
         },
         begin(){
-            alert(this.routine.name);
+            console.log("Beginning workout");
             const player = new WorkoutPlayer(this.routine,
                                              this.showStep,
                                              this.restStep,
@@ -84,8 +80,9 @@ const WorkoutMain = {
 
 
 const WORKOUTS = [{
-    id: 'basic',
-    name: 'Basic',
+    id: 'standard',
+    name: 'Standard 7m workout',
+    graphic: '',
     rest: 5,
     steps: [{
         name: 'Jumping jacks',
