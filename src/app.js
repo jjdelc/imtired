@@ -5,11 +5,16 @@ const WorkoutPlayer = class {
         this.callback = callback;
         this.finish = finish;
         this.rest =  rest;
+        this.stopped = false;
     }
     play(){
         const nextStep = (pos) => {
             const step = this.routine.steps[pos];
             this.callback(step);
+            if (this.stopped) {
+                console.log("Player stopped");
+                return
+            }
             if (pos + 1 < this.routine.steps.length) {
                 setTimeout(() => {
                     this.rest();
@@ -22,6 +27,9 @@ const WorkoutPlayer = class {
             }
         };
         nextStep(0);
+    }
+    stop(){
+        this.stopped = true;
     }
 };
 
@@ -56,6 +64,9 @@ const WorkoutMain = {
         }
     },
     methods: {
+        goHome(){
+            this.$emit('go-home');
+        },
         restStep(){
             this.state = 'rest';
         },
@@ -73,7 +84,12 @@ const WorkoutMain = {
                                              this.showStep,
                                              this.restStep,
                                              this.finishWorkout);
+            this.player = player;
             player.play();
+        },
+        stop(){
+            this.$emit('go-home');
+            this.player.stop();
         }
     }
 };
@@ -152,6 +168,10 @@ const app = new Vue({
         workouts: WORKOUTS
     },
     methods: {
+        goHome(){
+            console.log('going home!')
+            this.state = 'start';
+        },
         startWorkout(wo){
             this.state = 'workout';
             this.routine = wo;
