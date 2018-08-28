@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="./style.css" rel="stylesheet">
+<title>7mins</title>
+</head>
+<body>
+<div id="app">
+<top-menu></top-menu>
+    <section class="app-contents">
+<workout-main
+    ref="workoutScreens"
+    :routine="routine"
+    v-if="state === 'workout'"
+></workout-main>
+<app-start
+    v-if="state === 'start'"
+    v-on:start-workout="startWorkout"
+    :workouts="workouts"
+></app-start>
+    </section>
+</div>
+
+<script type="text/x-template" id="topMenuTpl">
+<div class="top-menu">
+Home
+</div>
+</script>
+
+<script type="text/x-template" id="appStartTpl">
+<div>
+    <ol>
+    <li v-for="wo in workouts">
+        <button @click="startWorkout(wo)" href="#">Start workout: {{wo.name}}</button>
+    </li>
+    </ol>
+</div>
+</script>
+
+<script type="text/x-template" id="workoutTpl">
+<div class="workout-content">
+    {{routine.name}}
+
+</div>
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
