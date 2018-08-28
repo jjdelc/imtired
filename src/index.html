@@ -14,6 +14,7 @@
 <section class="app-contents">
     <workout-main
         ref="workoutScreens"
+        v-on:go-home="goHome"
         :routine="routine"
         v-if="state === 'workout'"
     ></workout-main>
@@ -47,12 +48,15 @@ I'm tired
     <h1>{{routine.name}}</h1>
     <section v-show="state === 'step' && !!currentStep">
         <p v-if="!!currentStep">{{currentStep.name}}</p>
+        <p><button @click="stop">Stop</button></p>
     </section>
     <section v-show="state === 'rest'">
         <p>Resting...</p>
+        <p><button @click="stop">Stop</button></p>
     </section>
     <section v-show="state === 'done'">
         <p>Done!!</p>
+        <p><button @click="goHome">Go to homepage</button></p>
     </section>
 </div>
 </script>
