@@ -2,37 +2,41 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1" />
+<link rel="icon" href="favicon.png?v=0"/>
+<link rel="manifest" href="./manifest.json?v=0">
 <link href="./style.css" rel="stylesheet">
 <title>7mins</title>
 </head>
 <body>
 <div id="app">
 <top-menu></top-menu>
-    <section class="app-contents">
-<workout-main
-    ref="workoutScreens"
-    :routine="routine"
-    v-if="state === 'workout'"
-></workout-main>
-<app-start
-    v-if="state === 'start'"
-    v-on:start-workout="startWorkout"
-    :workouts="workouts"
-></app-start>
-    </section>
+<section class="app-contents">
+    <workout-main
+        ref="workoutScreens"
+        :routine="routine"
+        v-if="state === 'workout'"
+    ></workout-main>
+    <app-start
+        v-if="state === 'start'"
+        v-on:start-workout="startWorkout"
+        :workouts="workouts"
+    ></app-start>
+</section>
 </div>
 
 <script type="text/x-template" id="topMenuTpl">
 <div class="top-menu">
-Home
+I'm tired
 </div>
 </script>
 
 <script type="text/x-template" id="appStartTpl">
 <div>
-    <ol>
+    <p>Select a workout</p>
+    <ol class="workouts-list">
     <li v-for="wo in workouts">
-        <button @click="startWorkout(wo)" href="#">Start workout: {{wo.name}}</button>
+        <button class="workout-trigger" @click="startWorkout(wo)">{{wo.name}}</button>
     </li>
     </ol>
 </div>
@@ -40,9 +44,9 @@ Home
 
 <script type="text/x-template" id="workoutTpl">
 <div class="workout-content">
-    <p>{{routine.name}}</p>
-    <section v-show="state === 'step'">
-        <p>{{currentStep.name}}</p>
+    <h1>{{routine.name}}</h1>
+    <section v-show="state === 'step' && !!currentStep">
+        <p v-if="!!currentStep">{{currentStep.name}}</p>
     </section>
     <section v-show="state === 'rest'">
         <p>Resting...</p>
@@ -53,8 +57,21 @@ Home
 </div>
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="./routines.js" type="module"></script>
+<script src="./vue.js"></script>
 <script src="./app.js"></script>
+<script src="./upup.min.js"></script>
+<script>
+    UpUp.start({
+    'content-url': 'index.html',
+    'assets': [
+        '/favicon.png?v=0',
+        '/manifest.json?v=0',
+        '/style.css',
+        '/vue.js',
+        '/app.js',
+        '/upup.min.js'
+    ]
+   });
+</script>
 </body>
 </html>
