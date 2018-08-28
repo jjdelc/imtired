@@ -6,9 +6,27 @@ padding: 0;
 }
 
 .app-contents {
-
+max-width: 800px;
+margin: 0 auto;
+background: #FFFFFF;
+border: 1px solid #DDDDDD;
 }
 
 .top-menu {
 background: purple;
+text-align: center;
+font-size: 1.5rem;
+line-height: 180%;
+color: white;
+}
+.workouts-list {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+.workout-trigger {
+display: block;
+height: 4rem;
+width: 100%;
+text-align: center;
 }
