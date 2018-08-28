@@ -7,20 +7,20 @@
   "theme_color": "#EEE",
   "description": "7 minute workout webapp",
   "icons": [{
-    "src": "/favicon.png?v=0",
+    "src": "/favicon.svg?v=0",
     "sizes": "any",
-    "type": "image/png"
+    "type": "image/svg"
   }, {
-    "src": "/favicon.png?v=0",
+    "src": "/favicon.svg?v=0",
     "sizes": "192x192",
-    "type": "image/png"
+    "type": "image/svg"
   }, {
-    "src": "/favicon.png?v=0",
+    "src": "/favicon.svg?v=0",
     "sizes": "144x144",
-    "type": "image/png"
+    "type": "image/svg"
   }, {
-    "src": "/favicon.png?v=0",
+    "src": "/favicon.svg?v=0",
     "sizes": "256x256",
-    "type": "image/png"
+    "type": "image/svg"
   }]
 }
