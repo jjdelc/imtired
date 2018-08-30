@@ -45,16 +45,23 @@ I'm tired
 
 <script type="text/x-template" id="workoutTpl">
 <div class="workout-content">
-    <h1>{{routine.name}}</h1>
-    <section v-show="state === 'step' && !!currentStep">
-        <p v-if="!!currentStep">{{currentStep.name}}</p>
-        <p><button @click="stop">Stop</button></p>
+    <h1>
+        {{routine.name}}
+        <button
+                v-show="state !== 'done'"
+                @click="stop"
+        >Stop</button>
+    </h1>
+    <section class="step-content" v-show="state === 'step' && !!currentStep">
+        <figure class="step-graphic">
+            <img :src="currentStep.graphic"/>
+        </figure>
+        <p class="step-name" v-if="!!currentStep">{{currentStep.name}}</p>
     </section>
-    <section v-show="state === 'rest'">
-        <p>Resting...</p>
-        <p><button @click="stop">Stop</button></p>
+    <section class="step-content" v-show="state === 'rest'">
+        <p class="resting">Resting...</p>
     </section>
-    <section v-show="state === 'done'">
+    <section class="step-content" v-show="state === 'done'">
         <p>Done!!</p>
         <p><button @click="goHome">Go to homepage</button></p>
     </section>

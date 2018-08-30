@@ -102,59 +102,59 @@ const WORKOUTS = [{
     rest: 5,
     steps: [{
         name: 'Jumping jacks',
-        graphic: '',
+        graphic: 'media/jumping-jacks.svg',
         time: 30
     }, {
         name: 'Wall sit',
-        graphic: '',
+        graphic: 'media/wall-sit.svg',
         time: 30
     }, {
         name: 'Push ups',
-        graphic: '',
+        graphic: 'media/push-ups.svg',
         time: 30
     }, {
         name: 'Ab crunch',
-        graphic: '',
+        graphic: 'media/ab-crunch.svg',
         time: 30
     }, {
         name: 'Chair step',
-        graphic: '',
+        graphic: 'media/chair-step.svg',
         time: 30
     }, {
         name: 'Squat',
-        graphic: '',
+        graphic: 'media/squat.svg',
         time: 30
     }, {
         name: 'Triceps on chair',
-        graphic: '',
+        graphic: 'media/triceps.svg',
         time: 30
     }, {
         name: 'Plank',
-        graphic: '',
+        graphic: 'media/plank.svg',
         time: 30
     }, {
         name: 'High knees',
-        graphic: '',
+        graphic: 'media/high-knees.svg',
         time: 30
     }, {
         name: 'Lunge (Left)',
-        graphic: '',
+        graphic: 'media/lunge-left.svg',
         time: 15
     }, {
         name: 'Lunge (Right)',
-        graphic: '',
+        graphic: 'media/lunge-right.svg',
         time: 15
     }, {
         name: 'Push up w/rotation',
-        graphic: '',
+        graphic: 'media/push-up-rotate.svg',
         time: 30
     }, {
         name: 'Side plank (Left)',
-        graphic: '',
+        graphic: 'media/side-plank-left.svg',
         time: 15
     }, {
         name: 'Side plank (Right)',
-        graphic: '',
+        graphic: 'media/side-plank-right.svg',
         time: 15
     }, ]
 }];
