@@ -23,7 +23,6 @@ margin: 0 auto;
 
 .workout-content {
 flex: 1 0 auto;
-background: yellow;
 display: flex;
 flex-direction: column;
 }
@@ -40,6 +39,12 @@ flex: 1 0 auto;
 text-align: center;
 align-items: center;
 justify-content: center;
+width: 100%;
+margin: 0;
+}
+.step-graphic img {
+width: 100%;
+height: auto;
 }
 
 .top-menu {
@@ -75,4 +80,5 @@ color: rgba(0, 0, 0, 0.5);
 font-size: 200%;
 font-style: italic;
 color: rgba(0, 0, 0, 0.75);
+margin: 0;
 }
