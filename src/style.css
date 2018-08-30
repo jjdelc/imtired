@@ -49,6 +49,11 @@ font-size: 1.5rem;
 line-height: 180%;
 color: white;
 }
+.logo {
+display: inline-block;
+height: 1.5rem;
+width: 1.5rem;
+}
 .workouts-list {
 list-style: none;
 margin: 0;
