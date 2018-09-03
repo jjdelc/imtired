@@ -1,4 +1,4 @@
-const MS = 100;
+const MS = 1000;
 
 
 function delay(t, v) {
@@ -6,7 +6,6 @@ function delay(t, v) {
        setTimeout(resolve.bind(null, v), t)
    });
 }
-
 
 const Counter = class {
     constructor(callback){
@@ -31,24 +30,22 @@ const WorkoutPlayer = class {
         this.rest =  rest;
         this.stopped = false;
     }
-    play(){
-        const nextStep = (pos) => {
+    async play(){
+        const nextStep = async (pos) => {
             if (this.stopped) {
                 console.log("Player stopped");
                 return
             }
             const step = this.routine.steps[pos];
             this.callback(step);
-            delay(step.time * MS).then(() => {
-                this.rest();
-                return delay(this.routine.rest * MS);
-            }).then(() => {
-                if (pos + 1 < this.routine.steps.length) {
-                    nextStep(pos + 1);
-                } else {
-                    this.finish()
-                }
-            });
+            await delay(step.time * MS);
+            this.rest();
+            await delay(this.routine.rest * MS);
+            if (pos + 1 < this.routine.steps.length) {
+                nextStep(pos + 1);
+            } else {
+                this.finish()
+            }
         };
         nextStep(0);
     }
