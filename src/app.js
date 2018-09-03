@@ -1,4 +1,4 @@
-const MS = 100;
+const MS = 1000;
 
 
 function delay(t, v) {
@@ -85,7 +85,8 @@ const WorkoutMain = {
         return {
             currentStep: null,
             state: 'rest',
-            timeLeft: 0
+            timeLeft: 0,
+            timerClass: ''
         }
     },
     methods: {
@@ -94,6 +95,7 @@ const WorkoutMain = {
         },
         restStep(){
             this.state = 'rest';
+            this.timerClass = 'progress-timer';
             const counter = new Counter((timeLeft) => {
                 this.timeLeft = timeLeft;
             });
@@ -101,6 +103,7 @@ const WorkoutMain = {
         },
         showStep(step) {
             this.state = 'step';
+            this.timerClass = 'progress-timer';
             this.currentStep = step;
             const counter = new Counter((timeLeft) => {
                 this.timeLeft = timeLeft;

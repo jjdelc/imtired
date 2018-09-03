@@ -54,6 +54,13 @@ I'm tired
         >Stop</button>
     </h1>
     <section class="step-content" v-show="state === 'step' && !!currentStep">
+        <div class="progress-container">
+        <p
+            v-if="!!currentStep"
+            :class="timerClass"
+            :style="{animationDuration: currentStep.time + 's'}"
+        ></p>
+        </div>
         <figure class="step-graphic">
             <img v-if="!!currentStep" :src="currentStep.graphic"/>
         </figure>
@@ -67,6 +74,13 @@ I'm tired
             Resting...
             ({{timeLeft}})
         </p>
+        <div class="progress-container">
+        <p
+            v-if="!!currentStep"
+            :class="timerClass"
+            :style="{animationDuration: routine.rest + 's'}"
+        ></p>
+        </div>
     </section>
     <section class="step-content" v-show="state === 'done'">
         <p>Done!!</p>

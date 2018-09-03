@@ -82,3 +82,26 @@ font-style: italic;
 color: rgba(0, 0, 0, 0.75);
 margin: 0;
 }
+.progress-timer {
+display: block;
+width: 100%;
+margin: 0;
+height: 1rem;
+animation-name: progress;
+animation-iteration-count: 1;
+animation-timing-function: linear;
+}
+
+@keyframes progress {
+from {
+width: 0;
+background: #00DD00;
+}
+to {
+width: 100%;
+background: #CC0000;
+}
+}
+.progress-container {
+width: 100%;
+}
