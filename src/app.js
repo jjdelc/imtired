@@ -112,9 +112,12 @@ const WorkoutMain = {
         },
         finishWorkout(){
             this.state = 'done';
+            this.awake.disable();
             console.log('Workout finished!');
         },
         begin(){
+            this.awake = new NoSleep();
+            this.awake.enable();
             console.log("Beginning workout");
             const player = new WorkoutPlayer(this.routine,
                                              this.showStep,
@@ -126,6 +129,7 @@ const WorkoutMain = {
         stop(){
             this.$emit('go-home');
             this.player.stop();
+            this.awake.disable();
         }
     }
 };
