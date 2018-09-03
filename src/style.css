@@ -110,6 +110,9 @@ from {
 width: 0;
 background: #00DD00;
 }
+66% {
+background: #FFFF00;
+}
 to {
 width: 100%;
 background: #CC0000;
