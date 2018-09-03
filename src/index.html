@@ -55,12 +55,18 @@ I'm tired
     </h1>
     <section class="step-content" v-show="state === 'step' && !!currentStep">
         <figure class="step-graphic">
-            <img :src="currentStep.graphic"/>
+            <img v-if="!!currentStep" :src="currentStep.graphic"/>
         </figure>
-        <p class="step-name" v-if="!!currentStep">{{currentStep.name}}</p>
+        <p class="step-name" v-if="!!currentStep">
+            {{currentStep.name}}
+            ({{timeLeft}})
+        </p>
     </section>
     <section class="step-content" v-show="state === 'rest'">
-        <p class="resting">Resting...</p>
+        <p class="resting">
+            Resting...
+            ({{timeLeft}})
+        </p>
     </section>
     <section class="step-content" v-show="state === 'done'">
         <p>Done!!</p>

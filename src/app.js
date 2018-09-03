@@ -1,4 +1,28 @@
 const MS = 100;
+
+
+function delay(t, v) {
+   return new Promise(function(resolve) {
+       setTimeout(resolve.bind(null, v), t)
+   });
+}
+
+
+const Counter = class {
+    constructor(callback){
+        this.callback = callback;
+    }
+    countDown(timeLeft){
+        this.callback(timeLeft);
+        delay(MS).then(() => {
+            if (timeLeft > 0) {
+                this.countDown(timeLeft - 1);
+            }
+        });
+    }
+};
+
+
 const WorkoutPlayer = class {
     constructor(routine, callback, rest, finish){
         this.routine = routine;
@@ -16,12 +40,12 @@ const WorkoutPlayer = class {
                 return
             }
             if (pos + 1 < this.routine.steps.length) {
-                setTimeout(() => {
+                delay(step.time * MS).then(() => {
                     this.rest();
-                    setTimeout(() => {
+                    delay(this.routine.rest * MS).then(() => {
                         nextStep(pos + 1);
-                    }, this.routine.rest * MS);
-                }, step.time * MS);
+                    });
+                });
             } else {
                 this.finish()
             }
@@ -61,6 +85,7 @@ const WorkoutMain = {
         return {
             currentStep: null,
             state: 'rest',
+            timeLeft: 0
         }
     },
     methods: {
@@ -69,10 +94,18 @@ const WorkoutMain = {
         },
         restStep(){
             this.state = 'rest';
+            const counter = new Counter((timeLeft) => {
+                this.timeLeft = timeLeft;
+            });
+            counter.countDown(this.routine.rest);
         },
         showStep(step) {
             this.state = 'step';
             this.currentStep = step;
+            const counter = new Counter((timeLeft) => {
+                this.timeLeft = timeLeft;
+            });
+            counter.countDown(step.time);
         },
         finishWorkout(){
             this.state = 'done';
