@@ -63,17 +63,20 @@ I'm tired
             :style="{animationDuration: currentStep.time + 's'}"
         ></p>
         </div>
+        <figure class="step-graphic">
+            <img v-if="!!currentStep" :src="currentStep.graphic"/>
+        </figure>
+
         <p class="step-name" v-if="!!currentStep">
             {{currentStep.name}}
             ({{timeLeft}})
         </p>
-        <figure class="step-graphic">
-            <img v-if="!!currentStep" :src="currentStep.graphic"/>
-        </figure>
     </section>
     <section class="step-content" v-show="state === 'rest'">
-        <p class="resting">
-            Rest...
+        <p class="resting" v-if="!!currentStep">
+            Coming up:
+            <br/>
+            {{currentStep.name}}
             <br/>
             <span class="big-countdown">{{timeLeft}}</span>
         </p>

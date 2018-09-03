@@ -35,9 +35,10 @@ const WorkoutPlayer = class {
             const step = this.routine.steps[pos];
             this.callback(step);
             await delay(step.time);
-            this.rest();
-            await delay(this.routine.rest);
             if (pos + 1 < this.routine.steps.length) {
+                const next = this.routine.steps[pos + 1];
+                this.rest(next);
+                await delay(this.routine.rest);
                 nextStep(pos + 1);
             } else {
                 this.finish()
@@ -87,8 +88,9 @@ const WorkoutMain = {
         goHome(){
             this.$emit('go-home');
         },
-        restStep(){
+        restStep(nextStep){
             this.state = 'rest';
+            this.currentStep = nextStep;
             this.countDown(this.routine.rest);
         },
         countDown(time) {
