@@ -96,7 +96,6 @@ const WorkoutMain = {
         countDown(time) {
             this.timerClass = 'progress-timer';
             this.timeLeft = time;
-            console.log("Time left", time);
             const counter = new Counter(timeLeft => {
                 this.timeLeft = timeLeft;
             });
