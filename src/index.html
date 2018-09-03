@@ -46,8 +46,10 @@ I'm tired
 
 <script type="text/x-template" id="workoutTpl">
 <div class="workout-content">
-    <h1>
+    <h1 class="workout-header">
+        <span>
         {{routine.name}}
+        </span>
         <button
                 v-show="state !== 'done'"
                 @click="stop"

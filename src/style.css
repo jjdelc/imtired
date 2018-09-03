@@ -12,6 +12,12 @@ flex-direction: column;
 background: #FFFFFF;
 }
 
+button {
+border: 1px solid purple;
+background: purple;
+color: white;
+}
+
 .app-contents {
 display: flex;
 flex-direction: column;
@@ -26,7 +32,10 @@ flex: 1 0 auto;
 display: flex;
 flex-direction: column;
 }
-
+.workout-header {
+display: flex;
+justify-content: space-between;
+}
 .step-content {
 display: flex;
 flex-direction: column;
@@ -36,7 +45,7 @@ justify-content: center;
 }
 .step-graphic {
 flex: 1 0 auto;
-text-align: center;
+display: flex;
 align-items: center;
 justify-content: center;
 width: 100%;
@@ -49,6 +58,8 @@ text-align: center;
 font-size: 1.5rem;
 line-height: 180%;
 color: white;
+border-bottom: 1px solid rgba(0, 0, 0, 0.75);
+box-shadow: 0px 2px 3px #AAAAAA;
 }
 .logo {
 display: inline-block;
@@ -100,4 +111,6 @@ background: #CC0000;
 }
 .progress-container {
 width: 100%;
+border: 1px solid #CCCCCC;
+border-width: 1px 0;
 }
