@@ -41,7 +41,6 @@ const WorkoutPlayer = class {
             this.callback(step);
             delay(step.time * MS).then(() => {
                 this.rest();
-            }).then(() => {
                 return delay(this.routine.rest * MS);
             }).then(() => {
                 if (pos + 1 < this.routine.steps.length) {
