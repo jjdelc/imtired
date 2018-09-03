@@ -1,4 +1,4 @@
-const MS = 100000;
+const MS = 1000;
 
 
 function delay(t, v) {
