@@ -74,11 +74,26 @@ I'm tired
     <section class="step-content" v-show="state === 'rest'">
         <p class="resting">
             Resting...
-            ({{timeLeft}})
+            <br/>
+            <span class="big-countdown">{{timeLeft}}</span>
         </p>
         <div class="progress-container">
         <p
-            v-if="!!currentStep"
+            :class="timerClass"
+            :style="{animationDuration: routine.rest + 's'}"
+        ></p>
+        </div>
+    </section>
+    <section class="step-content" v-show="state === 'warmup'">
+        <p class="resting">
+            Prepare to begin...
+            <br/>
+            "{{routine.name}}"
+            <br/>
+            <span class="big-countdown">{{timeLeft}}</span>
+        </p>
+        <div class="progress-container">
+        <p
             :class="timerClass"
             :style="{animationDuration: routine.rest + 's'}"
         ></p>

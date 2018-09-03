@@ -51,6 +51,12 @@ justify-content: center;
 width: 100%;
 margin: 0;
 }
+.step-graphic img {
+animation-name: workout;
+animation-duration: 2s;
+animation-iteration-count: infinite;
+animation-timing-function: linear;
+}
 
 .top-menu {
 background: purple;
@@ -109,8 +115,16 @@ width: 100%;
 background: #CC0000;
 }
 }
+@keyframes workout {
+50% {
+transform: translateY(1rem);
+}
+}
 .progress-container {
 width: 100%;
 border: 1px solid #CCCCCC;
 border-width: 1px 0;
+}
+.big-countdown {
+font-size: 3rem;
 }

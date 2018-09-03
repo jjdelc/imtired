@@ -95,20 +95,19 @@ const WorkoutMain = {
         },
         restStep(){
             this.state = 'rest';
+            this.countDown(this.routine.rest)
+        },
+        countDown(time) {
             this.timerClass = 'progress-timer';
             const counter = new Counter((timeLeft) => {
                 this.timeLeft = timeLeft;
             });
-            counter.countDown(this.routine.rest);
+            counter.countDown(time);
         },
         showStep(step) {
             this.state = 'step';
-            this.timerClass = 'progress-timer';
             this.currentStep = step;
-            const counter = new Counter((timeLeft) => {
-                this.timeLeft = timeLeft;
-            });
-            counter.countDown(step.time);
+            this.countDown(step.time)
         },
         finishWorkout(){
             this.state = 'done';
@@ -116,6 +115,7 @@ const WorkoutMain = {
             console.log('Workout finished!');
         },
         begin(){
+            this.state = 'warmup';
             this.awake = new NoSleep();
             this.awake.enable();
             console.log("Beginning workout");
@@ -124,7 +124,10 @@ const WorkoutMain = {
                                              this.restStep,
                                              this.finishWorkout);
             this.player = player;
-            player.play();
+            this.countDown(this.routine.rest)
+            delay(this.routine.rest * MS).then(() => {
+                player.play();
+            });
         },
         stop(){
             this.$emit('go-home');
@@ -209,7 +212,7 @@ const app = new Vue({
     },
     methods: {
         goHome(){
-            console.log('going home!')
+            console.log('going home!');
             this.state = 'start';
         },
         startWorkout(wo){
