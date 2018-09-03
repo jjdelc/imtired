@@ -3,7 +3,7 @@ const MS = 1000;
 
 function delay(t, v) {
    return new Promise(function(resolve) {
-       setTimeout(resolve.bind(null, v), t * MS)
+       setTimeout(resolve.bind(null, v), t * MS);
    });
 }
 
@@ -14,7 +14,7 @@ const Counter = class {
     async countDown(timeLeft){
         this.callback(timeLeft);
         await delay(1);
-        if (timeLeft > 0) {
+        if (timeLeft > 1) {
             this.countDown(timeLeft - 1);
         }
     }
@@ -89,12 +89,13 @@ const WorkoutMain = {
         },
         restStep(){
             this.state = 'rest';
-            this.countDown(this.routine.rest)
+            this.countDown(this.routine.rest);
         },
         countDown(time) {
             this.timerClass = 'progress-timer';
             this.timeLeft = time;
-            const counter = new Counter((timeLeft) => {
+            console.log("Time left", time);
+            const counter = new Counter(timeLeft => {
                 this.timeLeft = timeLeft;
             });
             counter.countDown(time);
@@ -102,7 +103,7 @@ const WorkoutMain = {
         showStep(step) {
             this.state = 'step';
             this.currentStep = step;
-            this.countDown(step.time)
+            this.countDown(step.time);
         },
         finishWorkout(){
             this.state = 'done';
@@ -113,12 +114,15 @@ const WorkoutMain = {
             this.state = 'warmup';
             this.awake = new NoSleep();
             this.awake.enable();
-            console.log("Beginning workout");
-            const player = new WorkoutPlayer(this.routine,
-                                             this.showStep,
-                                             this.restStep,
-                                             this.finishWorkout);
+            const player = new WorkoutPlayer(
+                this.routine,
+                this.showStep,
+                this.restStep,
+                this.finishWorkout
+            );
             this.player = player;
+
+            console.log("Beginning workout");
             this.countDown(this.routine.rest);
             await delay(this.routine.rest);
             player.play();
