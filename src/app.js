@@ -112,7 +112,7 @@ const WorkoutMain = {
             this.awake.disable();
             console.log('Workout finished!');
         },
-        begin(){
+        async begin(){
             this.state = 'warmup';
             this.awake = new NoSleep();
             this.awake.enable();
@@ -123,9 +123,8 @@ const WorkoutMain = {
                                              this.finishWorkout);
             this.player = player;
             this.countDown(this.routine.rest);
-            delay(this.routine.rest * MS).then(() => {
-                player.play();
-            });
+            await delay(this.routine.rest * MS);
+            player.play();
         },
         stop(){
             this.$emit('go-home');
