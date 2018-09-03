@@ -42,9 +42,10 @@ const WorkoutPlayer = class {
             if (pos + 1 < this.routine.steps.length) {
                 delay(step.time * MS).then(() => {
                     this.rest();
-                    delay(this.routine.rest * MS).then(() => {
-                        nextStep(pos + 1);
-                    });
+                }).then(() => {
+                    return delay(this.routine.rest * MS);
+                }).then(() => {
+                    nextStep(pos + 1);
                 });
             } else {
                 this.finish()
@@ -99,6 +100,7 @@ const WorkoutMain = {
         },
         countDown(time) {
             this.timerClass = 'progress-timer';
+            this.timeLeft = time;
             const counter = new Counter((timeLeft) => {
                 this.timeLeft = timeLeft;
             });
@@ -124,7 +126,7 @@ const WorkoutMain = {
                                              this.restStep,
                                              this.finishWorkout);
             this.player = player;
-            this.countDown(this.routine.rest)
+            this.countDown(this.routine.rest);
             delay(this.routine.rest * MS).then(() => {
                 player.play();
             });
