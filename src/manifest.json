@@ -7,16 +7,16 @@
   "background_color": "#EEE",
   "theme_color": "#EEE",
   "icons": [{
-    "src": "/favicon.svg",
+    "src": "/favicon.png",
     "sizes": "any"
   }, {
-    "src": "/favicon.svg",
+    "src": "/favicon.png",
     "sizes": "192x192"
   }, {
-    "src": "/favicon.svg",
+    "src": "/favicon.png",
     "sizes": "144x144"
   }, {
-    "src": "/favicon.svg",
+    "src": "/favicon.png",
     "sizes": "256x256"
   }]
 }
