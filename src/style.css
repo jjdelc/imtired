@@ -79,9 +79,19 @@ padding: 0;
 }
 .workout-trigger {
 display: block;
-height: 4rem;
-width: 100%;
+margin: 0 auto;
+border-radius: 50%;
+font-size: 4rem;
+text-shadow: -2px -2px 2px #444444;
+width: 300px;
+height: 300px;
 text-align: center;
+box-shadow: 0 3px 8px #aaa, inset 0px 2px 3px #fff;
+background-image: linear-gradient(top, #f7f7f7, purple);
+}
+.workout-trigger:focus {
+box-shadow: 0 3px 8px #aaa, outset 0px 2px 3px #fff;
+
 }
 
 .resting {
