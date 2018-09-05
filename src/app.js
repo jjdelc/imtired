@@ -141,7 +141,7 @@ const WORKOUTS = [{
     id: 'standard',
     name: 'Standard 7m workout',
     graphic: '',
-    rest: 5,
+    rest: 10,
     steps: [{
         name: 'Jumping jacks',
         graphic: 'media/jumping-jacks.svg',
