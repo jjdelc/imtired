@@ -81,7 +81,9 @@ const WorkoutMain = {
             currentStep: null,
             state: 'rest',
             timeLeft: 0,
-            timerClass: ''
+            timerClass: '',
+            currentN: 0,
+            totalN: 0
         }
     },
     methods: {
@@ -103,6 +105,7 @@ const WorkoutMain = {
         },
         showStep(step) {
             this.state = 'step';
+            this.currentN++;
             this.currentStep = step;
             this.countDown(step.time);
         },
@@ -115,6 +118,7 @@ const WorkoutMain = {
             this.state = 'warmup';
             this.awake = new NoSleep();
             this.awake.enable();
+            this.totalN = this.routine.steps.length;
             const player = new WorkoutPlayer(
                 this.routine,
                 this.showStep,

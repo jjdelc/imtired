@@ -49,6 +49,7 @@ I'm tired
     <h1 class="workout-header">
         <span>
         {{routine.name}}
+            <span class="routine-progress" v-show="currentN > 0">{{currentN}} of {{totalN}}</span>
         </span>
         <button
                 v-show="state !== 'done'"
@@ -69,7 +70,7 @@ I'm tired
 
         <p class="step-name" v-if="!!currentStep">
             {{currentStep.name}}
-            ({{timeLeft}})
+            ({{timeLeft}}s)
         </p>
     </section>
     <section class="step-content" v-show="state === 'rest'">
@@ -78,7 +79,7 @@ I'm tired
             <br/>
             {{currentStep.name}}
             <br/>
-            <span class="big-countdown">{{timeLeft}}</span>
+            <span class="big-countdown">{{timeLeft}}s</span>
         </p>
         <div class="progress-container">
         <p
@@ -93,7 +94,7 @@ I'm tired
             <br/>
             "{{routine.name}}"
             <br/>
-            <span class="big-countdown">{{timeLeft}}</span>
+            <span class="big-countdown">{{timeLeft}}s</span>
         </p>
         <div class="progress-container">
         <p
