@@ -141,3 +141,8 @@ border-width: 1px 0;
 .big-countdown {
 font-size: 3rem;
 }
+.congratulations {
+font-size: 3rem;
+color: purple;
+text-align: center;
+}
