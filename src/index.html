@@ -35,12 +35,13 @@ I'm tired
 
 <script type="text/x-template" id="appStartTpl">
 <div>
-    <p>7 minute workout</p>
+    <h1>7 minute workout</h1>
     <ol class="workouts-list">
     <li v-for="wo in workouts">
         <button class="workout-trigger" @click="startWorkout(wo)">Start!</button>
     </li>
     </ol>
+    <p class="credits" ><a href="http://www.github.com/jjdelc/imtired">Source code on Github</a></p>
 </div>
 </script>
 

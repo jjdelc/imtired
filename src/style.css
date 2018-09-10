@@ -150,3 +150,10 @@ text-align: center;
 color: purple;
 font-weight: normal;
 }
+.credits {
+text-align: right;
+}
+.credits a {
+color: #BBBBBB;
+text-decoration: none;
+}
