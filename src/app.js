@@ -1,4 +1,5 @@
 const MS = 1000;
+const BG_SOUND_FILE = './media/beep.mp3';
 
 
 function delay(t, v) {
@@ -20,6 +21,22 @@ const Counter = class {
     }
 };
 
+const BgSound = class {
+    constructor(){
+        const audio = new Audio(BG_SOUND_FILE);
+        audio.loop = true;
+        audio.addEventListener('ended', {
+
+        });
+        this.audio = audio;
+    }
+    start() {
+        this.audio.play();
+    }
+    stop(){
+        this.audio.pause();
+    }
+};
 
 const WorkoutPlayer = class {
     constructor(routine, callback, rest, finish){
@@ -112,6 +129,7 @@ const WorkoutMain = {
         finishWorkout(){
             this.state = 'done';
             this.awake.disable();
+            this.bgSound.stop();
             console.log('Workout finished!');
         },
         async begin(){
@@ -126,7 +144,8 @@ const WorkoutMain = {
                 this.finishWorkout
             );
             this.player = player;
-
+            this.bgSound = new BgSound();
+            this.bgSound.start();
             console.log("Beginning workout");
             this.countDown(this.routine.rest);
             await delay(this.routine.rest);
@@ -136,6 +155,7 @@ const WorkoutMain = {
             this.$emit('go-home');
             this.player.stop();
             this.awake.disable();
+            this.bgSound.stop();
         }
     }
 };
