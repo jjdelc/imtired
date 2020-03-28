@@ -2,8 +2,17 @@ const MS = 1000;
 const BG_SOUND_FILE = './media/beep.mp3';
 const MOTIVATORS = {
     "10seconds": "./media/10secondsleft.mp3",
-    "321stop": "./media/321stop.mp3"
+    "20seconds": "./media/20secondsleft.mp3",
+    "321stop": "./media/321stop.mp3",
+    "321go": "./media/321go.mp3",
+    "alldone": "./media/alldone.mp3",
+    "okgetready": "./media/okgetready.mp3",
+    "rest10seconds": "./media/rest10seconds.mp3",
 };
+
+function playMotivator(name) {
+    new Audio(MOTIVATORS[name]).play();
+}
 
 
 function delay(t, v) {
@@ -18,10 +27,15 @@ const Counter = class {
         this.isWorkout = isWorkout
     }
     async playMotivators(timeLeft){
+        if (this.isWorkout === null) return;
         if (this.isWorkout) {
-            if (timeLeft === 11) new Audio(MOTIVATORS["10seconds"]).play();
+            if (timeLeft === 21) playMotivator("20seconds");
+            if (timeLeft === 11) playMotivator("10seconds");
+            if (timeLeft === 4) playMotivator("321stop");
+        } else {
+            if (timeLeft === 10) playMotivator("rest10seconds");
+            if (timeLeft === 4) playMotivator("321go");
         }
-        if (timeLeft === 4) new Audio(MOTIVATORS["321stop"]).play();
     }
     async countDown(timeLeft){
         this.callback(timeLeft);
@@ -70,7 +84,8 @@ const WorkoutPlayer = class {
                 await delay(this.routine.rest);
                 nextStep(pos + 1);
             } else {
-                this.finish()
+                this.finish();
+                playMotivator("alldone");
             }
         };
         nextStep(0);
@@ -158,8 +173,9 @@ const WorkoutMain = {
             this.player = player;
             this.bgSound = new BgSound();
             this.bgSound.start();
+            playMotivator("okgetready");
             console.log("Beginning workout");
-            this.countDown(this.routine.rest, false);
+            this.countDown(this.routine.rest, null);
             await delay(this.routine.rest);
             player.play();
         },
