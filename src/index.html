@@ -43,7 +43,7 @@ I'm tired
     <h1>7 minute workout</h1>
     <ol class="workouts-list">
     <li v-for="wo in workouts">
-        <button class="workout-trigger" @click="startWorkout(wo)">Start!!</button>
+        <button class="workout-trigger" @click="startWorkout(wo)">Start!</button>
     </li>
     </ol>
     <p class="credits" ><a href="http://www.github.com/jjdelc/imtired">Source code on Github</a></p>
@@ -118,7 +118,7 @@ I'm tired
 </script>
 
 <script src="./vue.js"></script>
-<script src="./app.js"></script>
+<script src="./app.js?v=1.1"></script>
 <script src="./NoSleep.min.js"></script>
 <script src="./upup.min.js"></script>
 <script>
@@ -156,6 +156,7 @@ I'm tired
             '/media/alldone.mp3',
             '/media/beep.mp3',
             '/media/okgetready.mp3',
+            '/media/go.mp3',
             '/media/rest10seconds.mp3'
 
         ]

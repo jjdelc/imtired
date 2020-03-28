@@ -8,6 +8,7 @@ const MOTIVATORS = {
     "alldone": "./media/alldone.mp3",
     "okgetready": "./media/okgetready.mp3",
     "rest10seconds": "./media/rest10seconds.mp3",
+    "go": "./media/go.mp3",
 };
 
 function playMotivator(name) {
@@ -177,6 +178,7 @@ const WorkoutMain = {
             console.log("Beginning workout");
             this.countDown(this.routine.rest, null);
             await delay(this.routine.rest);
+            playMotivator("go");
             player.play();
         },
         stop(){
