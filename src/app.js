@@ -1,5 +1,9 @@
 const MS = 1000;
 const BG_SOUND_FILE = './media/beep.mp3';
+const MOTIVATORS = {
+    "10seconds": "./media/10secondsleft.mp3",
+    "321stop": "./media/321stop.mp3"
+};
 
 
 function delay(t, v) {
@@ -9,12 +13,20 @@ function delay(t, v) {
 }
 
 const Counter = class {
-    constructor(callback){
+    constructor(callback, isWorkout){
         this.callback = callback;
+        this.isWorkout = isWorkout
+    }
+    async playMotivators(timeLeft){
+        if (this.isWorkout) {
+            if (timeLeft === 11) new Audio(MOTIVATORS["10seconds"]).play();
+        }
+        if (timeLeft === 4) new Audio(MOTIVATORS["321stop"]).play();
     }
     async countDown(timeLeft){
         this.callback(timeLeft);
         await delay(1);
+        this.playMotivators(timeLeft);
         if (timeLeft > 1) {
             this.countDown(timeLeft - 1);
         }
@@ -112,19 +124,19 @@ const WorkoutMain = {
             this.currentStep = nextStep;
             this.countDown(this.routine.rest);
         },
-        countDown(time) {
+        countDown(time, isWorkout) {
             this.timerClass = 'progress-timer';
             this.timeLeft = time;
             const counter = new Counter(timeLeft => {
                 this.timeLeft = timeLeft;
-            });
+            }, isWorkout);
             counter.countDown(time);
         },
         showStep(step) {
             this.state = 'step';
             this.currentN++;
             this.currentStep = step;
-            this.countDown(step.time);
+            this.countDown(step.time, true);
         },
         finishWorkout(){
             this.state = 'done';
@@ -147,7 +159,7 @@ const WorkoutMain = {
             this.bgSound = new BgSound();
             this.bgSound.start();
             console.log("Beginning workout");
-            this.countDown(this.routine.rest);
+            this.countDown(this.routine.rest, false);
             await delay(this.routine.rest);
             player.play();
         },
