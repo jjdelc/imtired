@@ -91,6 +91,7 @@ const WorkoutPlayer = class {
                 nextStep(pos + 1);
             } else {
                 this.finish();
+                delay(MS);  // Wait before saying the last words
                 playMotivator("alldone");
             }
         };
