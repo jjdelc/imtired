@@ -12,7 +12,7 @@ const MOTIVATORS = {
 };
 
 function playMotivator(name) {
-    new Audio(MOTIVATORS[name]).play();
+    new Audio(MOTIVATORS[name]||name).play();
 }
 
 
@@ -23,18 +23,23 @@ function delay(t, v) {
 }
 
 const Counter = class {
-    constructor(callback, isWorkout){
+    constructor(callback, isWorkout, customMedia){
         this.callback = callback;
-        this.isWorkout = isWorkout
+        this.isWorkout = isWorkout;
+        this.customMedia = customMedia;
     }
     async playMotivators(timeLeft){
-        if (this.isWorkout === null) return;
+        if (this.isWorkout === null) {
+            if (timeLeft === 6 && this.customMedia) playMotivator(this.customMedia);
+            return
+        }
         if (this.isWorkout) {
             if (timeLeft === 21) playMotivator("20seconds");
             if (timeLeft === 11) playMotivator("10seconds");
             if (timeLeft === 4) playMotivator("321stop");
         } else {
             if (timeLeft === 10) playMotivator("rest10seconds");
+            if (timeLeft === 6 && this.customMedia) playMotivator(this.customMedia);
             if (timeLeft === 4) playMotivator("321go");
         }
     }
@@ -138,14 +143,14 @@ const WorkoutMain = {
         restStep(nextStep){
             this.state = 'rest';
             this.currentStep = nextStep;
-            this.countDown(this.routine.rest);
+            this.countDown(this.routine.rest, false, nextStep.media);
         },
-        countDown(time, isWorkout) {
+        countDown(time, isWorkout, media) {
             this.timerClass = 'progress-timer';
             this.timeLeft = time;
             const counter = new Counter(timeLeft => {
                 this.timeLeft = timeLeft;
-            }, isWorkout);
+            }, isWorkout, media);
             counter.countDown(time);
         },
         showStep(step) {
@@ -176,7 +181,7 @@ const WorkoutMain = {
             this.bgSound.start();
             playMotivator("okgetready");
             console.log("Beginning workout");
-            this.countDown(this.routine.rest, null);
+            this.countDown(this.routine.rest, null, this.routine.steps[0].media);
             await delay(this.routine.rest);
             playMotivator("go");
             player.play();
@@ -199,58 +204,72 @@ const WORKOUTS = [{
     steps: [{
         name: 'Jumping jacks',
         graphic: 'media/jumping-jacks.svg',
+        media: 'media/jumping-jacks.mp3',
         time: 30
     }, {
         name: 'Wall sit',
         graphic: 'media/wall-sit.svg',
+        media: 'media/wall-sit.mp3',
         time: 30
     }, {
         name: 'Push ups',
         graphic: 'media/push-ups.svg',
+        media: 'media/push-up.mp3',
         time: 30
     }, {
         name: 'Ab crunch',
         graphic: 'media/ab-crunch.svg',
+        media: 'media/ab-crunch.mp3',
         time: 30
     }, {
         name: 'Chair step',
         graphic: 'media/chair-step.svg',
+        media: 'media/stair-step.mp3',
         time: 30
     }, {
         name: 'Squat',
         graphic: 'media/squat.svg',
+        media: 'media/squats.mp3',
         time: 30
     }, {
         name: 'Triceps on chair',
         graphic: 'media/triceps.svg',
+        media: 'media/triceps.mp3',
         time: 30
     }, {
         name: 'Plank',
         graphic: 'media/plank.svg',
+        media: 'media/plank.mp3',
         time: 30
     }, {
         name: 'High knees',
         graphic: 'media/high-knees.svg',
+        media: 'media/high-knees.mp3',
         time: 30
     }, {
         name: 'Lunge (Left)',
         graphic: 'media/lunge-left.svg',
+        media: 'media/lunge-left.mp3',
         time: 15
     }, {
         name: 'Lunge (Right)',
         graphic: 'media/lunge-right.svg',
+        media: 'media/lunge-right.mp3',
         time: 15
     }, {
         name: 'Push up w/rotation',
         graphic: 'media/push-up-rotate.svg',
+        media: 'media/push-up-w-rotation.mp3',
         time: 30
     }, {
         name: 'Side plank (Left)',
         graphic: 'media/side-plank-left.svg',
+        media: 'media/side-plank-left.mp3',
         time: 15
     }, {
         name: 'Side plank (Right)',
         graphic: 'media/side-plank-right.svg',
+        media: 'media/side-plank-right.mp3',
         time: 15
     }, ]
 }];
