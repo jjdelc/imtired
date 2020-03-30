@@ -39,7 +39,7 @@ const Counter = class {
             if (timeLeft === 4) playMotivator("321stop");
         } else {
             if (timeLeft === 10) playMotivator("rest10seconds");
-            if (timeLeft === 6 && this.customMedia) playMotivator(this.customMedia);
+            if (timeLeft === 8 && this.customMedia) playMotivator(this.customMedia);
             if (timeLeft === 4) playMotivator("321go");
         }
     }
@@ -91,7 +91,7 @@ const WorkoutPlayer = class {
                 nextStep(pos + 1);
             } else {
                 this.finish();
-                delay(MS);  // Wait before saying the last words
+                await delay(MS/2);  // Wait before saying the last words
                 playMotivator("alldone");
             }
         };
@@ -260,7 +260,7 @@ const WORKOUTS = [{
     }, {
         name: 'Push up w/rotation',
         graphic: 'media/push-up-rotate.svg',
-        media: 'media/push-up-w-rotation.mp3',
+        media: 'media/pushup-w-rotation.mp3',
         time: 30
     }, {
         name: 'Side plank (Left)',
