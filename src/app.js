@@ -198,7 +198,7 @@ const WorkoutMain = {
 
 const WORKOUTS = [{
     id: 'standard',
-    name: 'Standard 7m workout',
+    name: '7m Workout',
     graphic: '',
     rest: 10,
     steps: [{
@@ -271,7 +271,53 @@ const WORKOUTS = [{
         graphic: 'media/side-plank-right.svg',
         media: 'media/side-plank-right.mp3',
         time: 15
-    }, ]
+    }]
+}, {
+    id: "Yoga",
+    name: "4m Yoga",
+    graphic: "",
+    rest: 10,
+    steps: [{
+        name: "Child's pose",
+        graphic: "",
+        media: "",
+        time: 20,
+    },{
+        name: "Cat and Cow",
+        graphic: "",
+        media: "",
+        time: 20,
+    },{
+        name: "Down dog",
+        graphic: "",
+        media: "",
+        time: 20,
+    },{
+        name: "Three kegged dog",
+        graphic: "",
+        media: "",
+        time: 20,
+    },{
+        name: "High lunge",
+        graphic: "",
+        media: "",
+        time: 20,
+    },{
+        name: "Warrior two",
+        graphic: "",
+        media: "",
+        time: 20,
+    },{
+        name: "Plank",
+        graphic: "",
+        media: "",
+        time: 20,
+    },{
+        name: "Down dog",
+        graphic: "",
+        media: "",
+        time: 20,
+    }]
 }];
 
 
@@ -280,7 +326,8 @@ const app = new Vue({
     data: {
         state: 'start',
         routine: null,
-        workouts: WORKOUTS
+        workouts: WORKOUTS,
+        yoga: WORKOUTS,
     },
     methods: {
         goHome(){
