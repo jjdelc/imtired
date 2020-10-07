@@ -65,7 +65,7 @@ font-size: 1.5rem;
 line-height: 180%;
 color: white;
 border-bottom: 1px solid rgba(0, 0, 0, 0.75);
-box-shadow: 0px 2px 3px #AAAAAA;
+box-shadow: 0 2px 3px #AAAAAA;
 }
 .logo {
 display: inline-block;
@@ -79,14 +79,14 @@ padding: 0;
 }
 .workout-trigger {
 display: block;
-margin: 0 auto;
-border-radius: 50%;
-font-size: 4rem;
+margin: 1rem auto;
+font-size: 3.5rem;
 text-shadow: -2px -2px 2px #444444;
 width: 300px;
-height: 300px;
+max-width: 89%;
+height: 250px;
 text-align: center;
-box-shadow: 0 3px 8px #aaa, inset 0px 2px 3px #fff;
+box-shadow: 0 3px 8px #aaa, inset 0 2px 3px #fff;
 background-image: linear-gradient(top, #f7f7f7, purple);
 }
 .workout-trigger:focus {
