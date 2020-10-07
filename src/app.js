@@ -279,42 +279,42 @@ const WORKOUTS = [{
     rest: 10,
     steps: [{
         name: "Child's pose",
-        graphic: "",
+        graphic: "media/child-pose.svg",
         media: "",
         time: 20,
     },{
         name: "Cat and Cow",
-        graphic: "",
+        graphic: "media/cat-cow.svg",
         media: "",
         time: 20,
     },{
         name: "Down dog",
-        graphic: "",
+        graphic: "media/down-dog.svg",
         media: "",
         time: 20,
     },{
         name: "Three kegged dog",
-        graphic: "",
+        graphic: "media/3-legged-dog.svg",
         media: "",
         time: 20,
     },{
         name: "High lunge",
-        graphic: "",
+        graphic: "media/high-lunge.svg",
         media: "",
         time: 20,
     },{
         name: "Warrior two",
-        graphic: "",
+        graphic: "media/warrior-two.svg",
         media: "",
         time: 20,
     },{
         name: "Plank",
-        graphic: "",
-        media: "",
+        graphic: "media/plank.svg",
+        media: "media/plank.mp3",
         time: 20,
     },{
         name: "Down dog",
-        graphic: "",
+        graphic: "media/down-dog.svg",
         media: "",
         time: 20,
     }]
