@@ -293,7 +293,7 @@ const WORKOUTS = [{
         media: "",
         time: 20,
     },{
-        name: "Three kegged dog",
+        name: "Three legged dog",
         graphic: "media/3-legged-dog.svg",
         media: "",
         time: 20,
