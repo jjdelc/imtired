@@ -1,6 +1,6 @@
 {
-  "name": "I'm tired, workout webapp",
-  "description": "7 minute workout webapp",
+  "name": "I'm tired, workout",
+  "description": "7 minute workout",
   "short_name": "I'm tired",
   "start_url": "./?utm_source=web_app_manifest",
   "display": "standalone",
